@@ -1,0 +1,45 @@
+body{
+    
+    font-family:Georgia, 'Times New Roman', Times, serif
+}
+
+body{
+    background-image: linear-gradient(
+        95.2deg,
+        rgb(88, 86, 87) 26.8%,
+        rgb(44, 43, 44) 64%
+      );
+    color:rgb(228, 200, 200)
+    
+    
+}
+
+h1{
+    text-align: center;
+}
+hr {
+    height: 16px;
+    background-color: #dbbfb33b;
+    border: none;
+}
+
+h2{
+    font-size: 36px;
+   
+}
+
+
+.movie-img img {
+    float: left;
+    margin-right: 46px;
+    margin-bottom: 30px;
+    margin-left: 20px;
+
+}
+
+
+h4{
+    clear:both;
+    margin-left: 24px;
+
+}
