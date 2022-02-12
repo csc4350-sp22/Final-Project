@@ -9,7 +9,6 @@ from dotenv import load_dotenv, find_dotenv
 # This is to load your API keys from .env
 load_dotenv(find_dotenv())
 
-# define movie_search function that takes in the base url
 
 #pylint: disable = missing-function-docstring
 
