@@ -1,15 +1,19 @@
+#pylint: disable = missing-module-docstring
 import requests
+
+#pylint: disable = missing-function-docstring
 
 
 def wiki_search(movie):
-    URL = f"https://en.wikipedia.org/w/api.php"
+
+    url = "https://en.wikipedia.org/w/api.php"
     params = {
         "action": 'query',
         "titles": movie,
         "format": 'json',
         "formatversion": 2,
     }
-    response = requests.get(URL, params=params)
+    response = requests.get(url, params=params)
     response_json = response.json()
     query = response_json['query']
     pages = query['pages']
