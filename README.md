@@ -6,6 +6,9 @@
 
 3. Detailed description of technical issues and how you solved it (your process, what you searched, what resources you used)
 
+# Heroku Movie Url
+1. https://nameless-atoll-12538.herokuapp.com/
+
 # Deploying to Heroku
 1. On https://github.com/new, create a new repository
 2. In your terminal, in your home directory, clone the repo: `git clone git@github.com:csc4350-sp22/project1-bduong2.git`
