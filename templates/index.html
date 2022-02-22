@@ -1,31 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <link rel="stylesheet" href="/static/style.css" /> 
-        <meta charset="UTF-8" />
-        <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-        <title> Project 1 Milestone</title>
-    </head>
 
-    <body>       
-        <h1> ”*°•.˜”*°• BRANDON'S MOVIE SEARCH •°*”˜.•°*”˜ </h1><hr><br>
-        
-        
-        <label class="movie-img"><br>
+<head>
+    <!--We are importing an external stylesheet-->
+    <link rel="stylesheet" href="/static/style.css" />
+
+    <!--defines the document's title that is shown in the browser's title bar-->
+    <title> Project 1 Milestone</title>
+</head>
+
+<body>
+    <h1> ”*°•.˜”*°• BRANDON'S MOVIE SEARCH •°*”˜.•°*”˜ </h1>
+    <hr><br>
+
+
+
+    <label class="movie-img"><br>
         <img src={{movie_info['image']}} alt="image" height="700">
-        </label>
-        <img src="/static/haikyuu.gif" style="float:right;margin-right: 20px;"/><br>
-        
-        <h2> {{movie_info['title']}} </h2><br>
-        
-        <h3>"{{movie_info['tagline']}}"</h3><br>
-        <h3><i>Genres: {{", ".join(movie_info['genres'])}}</i></h3> 
-        <br><br><br><br><br><br><br><br>
-       <img src="/static/demon_slayer.gif" style="float:right;margin-right: 20px;"/>
-        
-        <h4><a href="{{wiki}}" style="color:rgb(228, 200, 200)">VIEW WIKIPEDIA PAGE!</a></h4>
-        
-        <h5><hr></h5>
-    </body>
+    </label>
+    <img src="/static/haikyuu.gif" style="float:right;margin-right: 20px;" /><br>
+
+    <h2> {{movie_info['title']}} </h2><br>
+
+    <h3>"{{movie_info['tagline']}}"</h3><br>
+    <h3><i>Genres: {{", ".join(movie_info['genres'])}}</i></h3>
+    <br><br><br><br><br><br><br><br>
+
+    <img src="/static/demon_slayer.gif" style="float:right;margin-right: 20px;" />
+
+    <!---creates a hyperlink to webpages-->
+    <h4><a href="{{wiki}}" style="color:rgb(228, 200, 200)">VIEW WIKIPEDIA PAGE!</a></h4>
+
+    <h5>
+        <hr>
+    </h5>
+
+    <a href="{{url_for('login')}}">Login Page</a><br>
+    <a href="{{url_for('register')}}">Register Page</a>
+
+</body>
+
 </html>

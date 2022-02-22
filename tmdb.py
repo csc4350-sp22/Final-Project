@@ -12,12 +12,15 @@ load_dotenv(find_dotenv())
 
 #pylint: disable = missing-function-docstring
 
-
+#def movie_search function with movie as our parameter
 def movie_search(movie):
 
+    #create a variable for our API endpoint
+    #which is essentially the address of a particular data we want
     url = f"https://api.themoviedb.org/3/movie/{movie}"
 
     # intialize the parameters
+    # os.getenv() method returns the value of the environmental variable key which in this case is TMDB_KEY
     query_params = {
         "api_key": os.getenv("TMDB_KEY"),
     }
@@ -25,11 +28,12 @@ def movie_search(movie):
     # the get() method sends a GET request to the specific URL and params
     response = requests.get(url, params=query_params)
 
-    # whenever we m ake a request to a specified URL through Python, it returns
+    # whenever we make a request to a specified URL through Python, it returns
     # a response object. Now, this response object would be used to access certain features such as
     # content, headers, etc.
 
     # set the variable movie_info to response.json()
+    # json() method of a response interface take a response strean and reads it to completion.
     movie_info = response.json()
 
     # set genre_info  to movie_info (which is our response that we are going to fetch)

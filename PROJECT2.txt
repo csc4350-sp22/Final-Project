@@ -1,0 +1,18 @@
+1) Setup
+a) Create a Heroku app and a database
+b) Save the database URL in a .env file
+c) App configuration: secret key, set database URL
+d) Create a data models: users and comments
+
+2) Login functionality
+a) Create an HTML template an app route for signup page and login page
+b) Need an HTML forms to signup and login
+c) Redirect to the signup or login page on app start
+d) Create an app route for handling login data
+	i) Server should check if the supplied username is in the database
+	ii) If so, log them in and redirect to main page
+	iii) If not, redirect to signup and/or flash message saying username didn match anything
+e) Create an app route for handling signup data
+i) Check if the username is in the database
+ii) If not, add it to the database
+iii) If so, tell the user the name is already taken.
