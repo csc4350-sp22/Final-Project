@@ -1,9 +1,9 @@
+from flask import Flask
+
+
 Flask
 
 requests
 
+
 python-dotenv
-
-flask_sqlalchemy
-
-

@@ -1,8 +1,6 @@
 # pylint: disable = missing-module-docstring
 # pylint: disable = missing-class-docstring
 
-# pylint: disable = plyint(no-member)
-
 
 import os
 import random
@@ -29,7 +27,7 @@ db = SQLAlchemy(app)
 
 
 # create User database
-
+# pylint: disable=no-member
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -95,6 +93,8 @@ def index():
         reviews=reviews,
 
     )
+
+# pylint: disable = missing-function-docstring
 
 
 @app.route('/', methods=['GET', 'POST'])
