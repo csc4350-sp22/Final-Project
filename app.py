@@ -25,9 +25,10 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
 
-
+# cool
 # create User database
 # pylint: disable=no-member
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
