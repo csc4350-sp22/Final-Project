@@ -8,9 +8,9 @@ import os
 import random
 import flask
 from flask import session
-from tmdb import movie_search
-from wiki import wiki_search
 from flask_sqlalchemy import SQLAlchemy
+from wiki import wiki_search
+from tmdb import movie_search
 
 
 app = flask.Flask(__name__)
