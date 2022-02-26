@@ -4,7 +4,7 @@ requests
 
 python-dotenv
 
-session
+
 
 flash_sqalchemy
 
