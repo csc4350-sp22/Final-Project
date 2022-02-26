@@ -5,6 +5,6 @@ requests
 python-dotenv
 
 
-session
+Flask-session
 
 
