@@ -19,6 +19,7 @@ app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('database_url')
 
 app.config["SECRET_KEY"] = os.getenv("SECRET_KEY")
 
+
 # Gets rid of a warning
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
