@@ -1,8 +1,8 @@
-# Project Milestone 1 README.md
+# Project Milestone 2 README.md
 
 1. Explains how someone who clones the repository can set up and run your project locally (what to install, any extra files to add)
 
-2. Detailed description of known problems and how you would address them if you had more time. If none exist, what additional features might you implement, and how?
+2. Detailed description of how implementing your project differed from your expectations during project planning.
 
 3. Detailed description of technical issues and how you solved it (your process, what you searched, what resources you used)
 
