@@ -4,9 +4,6 @@ requests
 
 python-dotenv
 
-flask_sqlalchemy
-
-
 
 
 Flask-session
