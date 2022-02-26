@@ -4,6 +4,6 @@ requests
 
 python-dotenv
 
-flask_sqalchemy
+flask_sqlalchemy
 
 
