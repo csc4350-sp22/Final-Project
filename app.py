@@ -1,50 +1,143 @@
-#pylint: disable = missing-module-docstring
+# pylint: disable = missing-module-docstring
+# pylint: disable = missing-class-docstring
+
+# pylint: disable = plyint(no-member)
+
+
 import os
 import random
-from flask import Flask, render_template, url_for
+import flask
+from flask import session
 from tmdb import movie_search
 from wiki import wiki_search
+from flask_sqlalchemy import SQLAlchemy
 
 
-# create a flask object with variable name app
-app = Flask(__name__)
+app = flask.Flask(__name__)
 
 
-@app.route('/')
-#pylint: disable = missing-function-docstring
-# def index function
-# displays the index page accessible at "/"
+app.secret_key = "ABC"
+
+
+# Point SQLAlchemy to your Heroku database
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('DATABASE_URL')
+
+# Gets rid of a warning
+app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
+
+db = SQLAlchemy(app)
+
+
+# create User database
+
+
+class User(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(120), unique=True)
+
+
+# create Comment database
+
+
+class Comment(db.Model):
+
+    id = db.Column(db.Integer, primary_key=True)
+    username = db.Column(db.String(120), unique=False)
+    rating = db.Column(db.Integer, unique=False, nullable=False)
+    comment = db.Column(db.String(300), unique=False, nullable=False)
+    movie = db.Column(db.Integer, unique=False, nullable=False)
+
+
+db.create_all()
+
+
+@app.route('/index', methods=['GET', 'POST'])
+# pylint: disable = missing-function-docstring
 def index():
 
-    # initialize movie list with the specified id's
+    if flask.request.method == "POST":
+
+        if session.get("user"):
+            username = session["user"]
+
+        data = flask.request.form
+        rating = data["rating"]
+        comment = data["comment"]
+        movie = data["movie"]
+
+        new_comment = Comment(
+            rating=rating, comment=comment, movie=movie, username=username)
+
+        print(rating)
+        print(comment)
+        print(movie)
+        print(username)
+
+        db.session.add(new_comment)
+        db.session.commit()
+        flask.redirect(flask.url_for("index"))
+
     movies_list = [70981, 299534, 634649, 207703, 566525]
 
-    # python random choice() method returns a random element from a list
-    # in this case, list is from movies_list
     random_mov = random.choice(movies_list)
 
-    # here we are calling the function movie_search that we declared in tmdb.py
-    # this will get all the neccessary information using the tmdb api such as
-    # the title, tagline, genres, and movie image
     movie_info = movie_search(random_mov)
 
     wiki = wiki_search(movie_info['title'])
 
-    # render_template is a flask function that is used to generate
-    # output from a template file based on the Jinja 2 engine that is found
-    # in the application template's folder
-    return render_template("index.html", movie_info=movie_info, wiki=wiki)
+    reviews = Comment.query.filter_by(movie=random_mov).all()
+
+    return flask.render_template(
+        "index.html",
+        movie_info=movie_info,
+        movie=random_mov,
+        wiki=wiki,
+        reviews=reviews,
+
+    )
 
 
-@app.route
-@app.route('/login', methods=['GET', 'POST'])
+@app.route('/', methods=['GET', 'POST'])
 def login():
-    return render_template('login.html')
+    if flask.request.method == "POST":
+
+        username = flask.request.form.get("username")
+
+        username_exists = User.query.filter_by(username=username).first()
+
+        if username_exists:
+            session["user"] = username
+            return flask.redirect(flask.url_for("index"))
+
+        else:
+            flask.flash("Invalid Username!")
+
+    return flask.render_template('login.html')
 
 
 @app.route('/register', methods=['GET', 'POST'])
 def register():
-    return render_template('register.html')
+    if flask.request.method == "POST":
+
+        username = flask.request.form.get("username")
+
+        username_exists = User.query.filter_by(username=username).first()
+
+        if username_exists:
+            flask.flash("Username already exists!")
+            return flask.redirect(flask.url_for("register"))
+
+        else:
+            # make new user
+            new_user = User(username=username)
+            # add new user
+            db.session.add(new_user)
+            # commit session
+            db.session.commit()
+            # redirect to login page
+            return flask.redirect(flask.url_for("login"))
+
+    return flask.render_template("register.html")
 
 
 app.run(

@@ -9,35 +9,69 @@
     <title> Project 1 Milestone</title>
 </head>
 
-<body>
-    <h1> ”*°•.˜”*°• BRANDON'S MOVIE SEARCH •°*”˜.•°*”˜ </h1>
-    <hr><br>
+        <body>
+        <h1> ”*°•.˜”*°• BRANDON'S MOVIE SEARCH •°*”˜.•°*”˜ </h1>
+
+        
+
+        <hr><br>
+        <label class="movie-img"><br>
+            <img src={{movie_info['image']}} alt="image" height="700">
+        </label>
+        <img src="/static/haikyuu.gif" style="float:right;margin-right: 20px;" /><br>
+        <h2> {{movie_info['title']}} </h2><br>
+        <h3>"{{movie_info['tagline']}}"</h3><br>
+        <h3><i>Genres: {{", ".join(movie_info['genres'])}}</i></h3>
+        <br>
+        <img src="/static/demon_slayer.gif" style="float:right;margin-right: 20px;" />
+        <!---creates a hyperlink to webpages-->
+        <h4><a href="{{wiki}}" style="color:rgb(228, 200, 200)">VIEW WIKIPEDIA PAGE!</a></h4>
+        <h5>
+            <hr>
+        </h5>
+
+        <div align="center">
+        <h2> see what other people said!</h2>
+        </div>
+
+        <form action="/index" method="POST">
+            
+            <p>Movie ID:</p>
+            <input type ="integer" name = "movie" value="{{movie}}" readonly>
+
+            <p>Rating (out of 5):</p>
+            <input type ="number" name="rating" min="1" max="5">
+
+            <p>Leave a comment:</p>
+            <input type ="text" name="comment">
+
+            <input type= "submit" value="Submit Comment">
+
+        </form>
+            
+        <div class = "grid" align="right">
+            <a href="/" style="color:rgb(228, 200, 200)">Log In</a>
+        </div>
+
+        <div align="right">
+            <a href="/register" style="color:rgb(228, 200, 200)">Sign Up</a>
+        </div>
+        
+
+        
+        
+        {%for i in reviews %}
+              
+            <p>Username: {{i.username}}</p>
+            <p>Rating: {{i.rating}}</p>
+            <p>Comment: {{i.comment}}</p>
+            
+            
+            
+        {%endfor%}
+       
 
 
-
-    <label class="movie-img"><br>
-        <img src={{movie_info['image']}} alt="image" height="700">
-    </label>
-    <img src="/static/haikyuu.gif" style="float:right;margin-right: 20px;" /><br>
-
-    <h2> {{movie_info['title']}} </h2><br>
-
-    <h3>"{{movie_info['tagline']}}"</h3><br>
-    <h3><i>Genres: {{", ".join(movie_info['genres'])}}</i></h3>
-    <br><br><br><br><br><br><br><br>
-
-    <img src="/static/demon_slayer.gif" style="float:right;margin-right: 20px;" />
-
-    <!---creates a hyperlink to webpages-->
-    <h4><a href="{{wiki}}" style="color:rgb(228, 200, 200)">VIEW WIKIPEDIA PAGE!</a></h4>
-
-    <h5>
-        <hr>
-    </h5>
-
-    <a href="{{url_for('login')}}">Login Page</a><br>
-    <a href="{{url_for('register')}}">Register Page</a>
-
-</body>
+    </body>
 
 </html>

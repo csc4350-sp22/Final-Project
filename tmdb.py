@@ -12,15 +12,15 @@ load_dotenv(find_dotenv())
 
 #pylint: disable = missing-function-docstring
 
-#def movie_search function with movie as our parameter
+# def movie_search function with movie as our parameter
 def movie_search(movie):
 
-    #create a variable for our API endpoint
-    #which is essentially the address of a particular data we want
+    # create a variable for our API endpoint
+    # which is essentially the address of a particular data we want
     url = f"https://api.themoviedb.org/3/movie/{movie}"
 
     # intialize the parameters
-    # os.getenv() method returns the value of the environmental variable key which in this case is TMDB_KEY
+
     query_params = {
         "api_key": os.getenv("TMDB_KEY"),
     }
