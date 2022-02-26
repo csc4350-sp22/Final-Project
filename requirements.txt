@@ -4,8 +4,8 @@ requests
 
 python-dotenv
 
-Flask-SQLAlchemy
+Flask-SQLAlchemy==2.1
 
 Flask-session
 
-SQLAlchemy
+psycopg2-binary
