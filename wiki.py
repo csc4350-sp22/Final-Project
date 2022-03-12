@@ -1,7 +1,7 @@
-#pylint: disable = missing-module-docstring
+# pylint: disable = missing-module-docstring
 import requests
 
-#pylint: disable = missing-function-docstring
+# pylint: disable = missing-function-docstring
 
 
 def wiki_search(movie):
@@ -13,9 +13,9 @@ def wiki_search(movie):
     # here we are initializing the parameters for our Wikipedia
     # API search
     params = {
-        "action": 'query',
+        "action": "query",
         "titles": movie,
-        "format": 'json',
+        "format": "json",
         "formatversion": 2,
     }
 
@@ -28,16 +28,16 @@ def wiki_search(movie):
 
     # we set the query variable to response_json['query]
     # which will fetch data from and about MediaWiki
-    query = response_json['query']
+    query = response_json["query"]
 
     # we set the pages variable to query['pages]
     # which will fetch pages
-    pages = query['pages']
+    pages = query["pages"]
 
     # set first_page to pages[0] to fetch the first page
     first_page = pages[0]
 
-    page_id = first_page['pageid']
+    page_id = first_page["pageid"]
 
     url = f"https://en.wikipedia.org/?curid={page_id}"
 

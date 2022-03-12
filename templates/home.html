@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <!--We are importing an external stylesheet-->
+    <link rel="stylesheet" href="/static/style.css" />
+
+    <!--defines the document's title that is shown in the browser's title bar-->
+    <title> Project 1 Milestone</title>
+</head>
+
+<body>
+    <h1> ”*°•.˜”*°• BRANDON'S MOVIE SEARCH •°*”˜.•°*”˜ </h1>
+
+
+
+    <hr><br>
+    <label class="movie-img"><br>
+        <img src={{movie_info['image']}} alt="image" height="700">
+    </label>
+    <img src="/static/haikyuu.gif" style="float:right;margin-right: 20px;" /><br>
+    <h2> {{movie_info['title']}} </h2><br>
+    <h3>"{{movie_info['tagline']}}"</h3><br>
+    <h3><i>Genres: {{", ".join(movie_info['genres'])}}</i></h3>
+    <br>
+    <img src="/static/demon_slayer.gif" style="float:right;margin-right: 20px;" />
+    <!---creates a hyperlink to webpages-->
+    <h4><a href="{{wiki}}" style="color:rgb(228, 200, 200)">VIEW WIKIPEDIA PAGE!</a></h4>
+    <h5>
+        <hr>
+    </h5>
+
+    <div align="center">
+        <h2> see what other people said!</h2>
+    </div>
+
+    <form action="/rate" method="POST">
+
+        <p>Movie ID:</p>
+        <input type="integer" name="movie_id" value="{{movie_id}}" readonly>
+
+        <p>Ratings:</p>
+        <input id="rating" type="number" name="rating" min="1" max="5"/>
+
+        <p>Leave a comment:</p>
+        <textarea id="comment" name="comment" placeholder="Leave a comment"></textarea>
+
+        <input type="submit" value="Submit Comment">
+
+    </form>
+
+    <div class="grid" align="right">
+        <a href="/login" style="color:rgb(228, 200, 200)">Log In</a>
+    </div>
+
+    <div align="right">
+        <a href="/register" style="color:rgb(228, 200, 200)">Sign Up</a>
+    </div>
+
+    <div align="right">
+        <a href="/milestone3" style="color:rgb(228, 200, 200)">New Page!</a>
+    </div>
+
+    <h2>See what other people said!</h2>
+	{% for i in reviews %}
+	<div>
+		<h3>User: {{i.username}}</h3>
+		<b>Rating: {{i.rating}}/5</b>
+		<p>Comment: {{i.comment}}</p>
+	</div>
+	{% endfor %}
+	</div>
+
+</body>
+
+</html>
